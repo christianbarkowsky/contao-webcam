@@ -65,7 +65,7 @@ class ModuleWebcam extends Module
 		$webcamID = intval($this->Input->get('webcamID'));
 
 		// Get news item
-		$objWebcam = $this->Database->prepare("SELECT id From tl_module_webcam WHERE display=? AND id=?")->limit(1)->execute($webcamID, $webcamID);
+		$objWebcam = $this->Database->prepare("SELECT id From tl_module_webcam WHERE display=? AND id=?")->limit(1)->execute(1, $webcamID);
 
 		if ($objWebcam->numRows < 1)
 		{
