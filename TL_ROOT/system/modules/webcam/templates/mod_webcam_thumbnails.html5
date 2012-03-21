@@ -1,9 +1,7 @@
 <div class="<?php echo $this->class; ?> block module"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
 
-	<div class="icon_mod_webcam"></div>
-
 	<?php if ($this->headline): ?>
-		<div class="headline"><<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>></div>
+	<div class="headline"><<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>></div>
 	<?php endif; ?>
 
 	<script type="text/javascript">
@@ -77,7 +75,9 @@
 	function main_cam_update()
 	{
 		document.getElementById("wlink").href =imglink + "?webcamID=" + id[n];
-			document.images["webcam_image"].alt =title[n];
+			document.images["webcam_image"].alt = title[n];
+			document.getElementById("webcam_image_title").innerHTML = title[n];
+
 			if(image[n].indexOf("?")<0){
 				document.images["webcam_image"].src =image[n] + "?"+new Date();
 			}else{
@@ -111,8 +111,9 @@
 				</script>
 
 			</a>
+			<p id="webcam_image_title"></p>
 			<div id="minicams"></div>
 		</div>
 	</div>
-	<div class="module_border_bottom"></div>
+
 </div>
