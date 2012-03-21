@@ -77,11 +77,11 @@
 	function main_cam_update()
 	{
 		document.getElementById("wlink").href =imglink + "?webcamID=" + id[n];
-			document.images["webcam_image2"].alt =title[n];
+			document.images["webcam_image"].alt =title[n];
 			if(image[n].indexOf("?")<0){
-				document.images["webcam_image2"].src =image[n] + "?"+new Date();
+				document.images["webcam_image"].src =image[n] + "?"+new Date();
 			}else{
-				document.images["webcam_image2"].src =image[n] + "&"+new Date();
+				document.images["webcam_image"].src =image[n] + "&"+new Date();
 			}
     }
 
@@ -104,10 +104,10 @@
 	<div class="module_content_background">
 		<div class="module_content">
 			<a id="wlink" href="<?php echo $this->jumpTo; ?>?webcamID=<?php echo $this->camArr[0]['id'];?>">
-			   <img src="<?php echo str_replace("&#61;","=",str_replace("\n", "",  $this->camArr[0]['image']));?>" alt=" " name="webcam_image2" id="webcam_image2" width="<?php echo $this->thumpnail_width; ?>" height="<?php echo $this->thumpnail_height; ?>" border="0"/>
+			   <img src="<?php echo str_replace("&#61;","=",str_replace("\n", "",  $this->camArr[0]['image']));?>" alt="" id="webcam_image" width="<?php echo $this->thumpnail_width; ?>" height="<?php echo $this->thumpnail_height; ?>" />
 
 				<script type="text/javascript">
-					document.getElementById("webcam_image2").onerror = function (){rotate();}
+					document.getElementById("webcam_image").onerror = function (){rotate();}
 				</script>
 
 			</a>

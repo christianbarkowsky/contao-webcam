@@ -64,6 +64,24 @@ class ModuleWebcam extends Module
 
 		$webcamID = intval($this->Input->get('webcamID'));
 
+		// Get news item
+		$objWebcam = $this->Database->prepare("SELECT id From tl_module_webcam WHERE display=? AND id=?")->limit(1)->execute($webcamID, $webcamID);
+
+		if ($objWebcam->numRows < 1)
+		{
+			// Do not index or cache the page
+			$objPage->noSearch = 1;
+			$objPage->cache = 0;
+
+			// Send a 404 header
+			header('HTTP/1.1 404 Not Found');
+			$this->Template->title = '<p class="error">' . sprintf($GLOBALS['TL_LANG']['MSC']['invalidPage'], $webcamID) . '</p>';
+			$this->Template->webcamError = true;
+			return;
+		}
+
+
+
 		if($webcamID && is_int($webcamID))
 		{
 			if($id>9999999999)

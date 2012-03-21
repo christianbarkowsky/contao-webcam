@@ -1,5 +1,10 @@
 <div class="<?php echo $this->class; ?> ce_text"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
 
+	<?php if($this->webcamError): ?>
+	<p><?php echo $this->title; ?></p>
+
+	<?php else: ?>
+
 	<div class="content_area">
 		<?php if ($this->headline): ?>
 		<<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
@@ -10,7 +15,7 @@
 		<?php endif; ?>
 
 		<p>
-			<img onerror="clear_img(this)" src="<?php echo str_replace("&#61;","=",str_replace("\n", "",  $this->source));?>"  name="webcam_image" id="webcam_image" style="<?php echo $this->thumpnail_width; ?> <?php echo $this->thumpnail_height; ?>" border="0"/>
+			<img onerror="clear_img(this)" src="<?php echo str_replace("&#61;","=",str_replace("\n", "",  $this->source));?>" alt="<?php echo $this->title; ?>" id="webcam_image" style="<?php echo $this->thumpnail_width; ?> <?php echo $this->thumpnail_height; ?>">
 		</p>
 	</div>
 
@@ -44,5 +49,6 @@
 
 	//--><!]]>
 	</script>
+	<?php endif; ?>
 
 </div>
