@@ -1,0 +1,50 @@
+<div class="<?php echo $this->class; ?> ce_text"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+	<div class="content_area">
+		 <?php if ($this->headline): ?>
+			 <<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
+		 <?php endif; ?>
+
+		 <?php if ($this->title): ?>
+			 <h1><?php echo $this->title; ?></h1>
+		 <?php endif; ?>
+
+		 <p>
+			 <img onerror="clear_img(this)" src="<?php echo str_replace("&#61;","=",str_replace("\n", "",  $this->source));?>"  name="webcam_image" id="webcam_image" style="width:<?php echo $this->thumpnail_width; ?><?php echo $this->unit;?>; height:<?php echo $this->thumpnail_height; ?><?php echo $this->unit;?>;" border="0"/>
+		 </p>
+	 </div>
+	<script type="text/javascript">
+
+	<!--//--><![CDATA[//><!--
+		var refreshrate= <?php echo $this->updateperiode; ?>;
+		var id     = <?php echo $this->id;?>;
+		var title  = "<?php echo $this->title;?>";
+		var image  = "<?php echo $this->source;?>";
+
+
+		function clear_img(img){
+			img.src="system/modules/webcam/html/spacer.gif";
+			img.style.height=0;
+		}
+
+		function refresh_cam(){
+			//document.images["webcam_image"].alt = "<?php echo $this->title;?>";
+			if("<?php echo $this->source;?>".indexOf("?")<0){
+				document.images["webcam_image"].src ="<?php echo str_replace("&#61;","=",str_replace("\n", "",$this->source));?>" + "?"+new Date();
+			}else{
+				document.images["webcam_image"].src ="<?php echo str_replace("&#61;","=",str_replace("\n", "",$this->source));?>" + "&"+new Date();
+			}
+
+			document.images["webcam_image"].style.height=<?php echo $this->thumpnail_height; ?> + "<?php echo $this->unit;?>";
+			setTimeout('refresh_cam()', refreshrate*1000);
+		}
+
+    refresh_cam();
+
+	//--><!]]>
+	</script>
+	<?php if ($this->webcam_mail==1): ?>
+	<div class="w_mail">
+	<a id="link" href="<?php echo $this->jumpTo; ?>?webcamID=<?php echo $this->id;?>&w_mail=do"><?php echo $this->webcam_link; ?></a>
+	</div>
+	<?php endif; ?>
+</div>
